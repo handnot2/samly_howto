@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <a  href="https://github.com/handnot2"
+          class="nav navbar-brand">
+        Samly Howto
+      </a>
+
+      <%= if @uid do %>
+        <p class="nav navbar-text">Signed in as <%= @uid %></p>
+      <% end %>
+      <div class="nav navbar-nav navbar-right" style="padding: 0 15px;">
+        <a href="/sso/sp/metadata"
+           class="btn btn-sm btn-default navbar-btn"
+           role="button">
+           SAML SP Metadata
+         </a>
+
+        <%= if @uid do %>
+         <a href="/sso/auth/signout"
+            class="btn btn-sm btn-primary navbar-btn"
+            role="button">
+            Sign out
+          </a>
+        <% else %>
+          <a href="/sso/auth/signin"
+             class="btn btn-sm btn-primary navbar-btn"
+             role="button">
+             Sign in
+           </a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+  <%= if @attributes do %>
+    <div class="container-fluid">
+      <table class="table table-striped">
+        <thead>
+          <tr><th>Attributes from IdP Sent SAML Assertion</th></tr>
+          <tr><th>Attribute</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <%= for {k, v} <- @attributes do %>
+            <tr><td><%= k %></td><td><%= v %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+  <%= if @computed do %>
+    <div class="container-fluid">
+      <table class="table table-striped">
+        <thead>
+          <tr><th>Computed Attributes</th></tr>
+          <tr><th>Attribute</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <%= for {k, v} <- @computed do %>
+            <tr><td><%= k %></td><td><%= v %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
