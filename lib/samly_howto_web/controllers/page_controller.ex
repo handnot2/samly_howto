@@ -10,7 +10,8 @@ defmodule SamlyHowtoWeb.PageController do
       {nil, nil}
     end
 
+    target_url = "/?a=value1&b=value two" |> URI.encode_www_form()
     render conn, "index.html",
-      uid: uid, attributes: attributes, computed: computed
+      uid: uid, attributes: attributes, computed: computed, target_url: target_url
   end
 end

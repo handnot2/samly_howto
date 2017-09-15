@@ -17,13 +17,13 @@
          </a>
 
         <%= if @uid do %>
-         <a href="/sso/auth/signout"
+          <a href="/sso/auth/signout?target_url=<%= @target_url %>"
             class="btn btn-sm btn-primary navbar-btn"
             role="button">
             Sign out
           </a>
         <% else %>
-          <a href="/sso/auth/signin"
+          <a href="/sso/auth/signin?target_url=<%= @target_url %>"
              class="btn btn-sm btn-primary navbar-btn"
              role="button">
              Sign in
