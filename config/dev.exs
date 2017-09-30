@@ -51,6 +51,10 @@ config :phoenix, :stacktrace_depth, 20
 
 config :samly, Samly.Provider,
   #base_url: "http://samly.howto:4003/sso",
+  #sign_requests: true,
+  #sign_metadata: true,
+  #idp_signs_assertion_in_idp_resp: true,
+  #idp_signs_envelopes_in_idp_resp: true,
   pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
   certfile: "samly.crt",
   keyfile:  "samly.pem",
