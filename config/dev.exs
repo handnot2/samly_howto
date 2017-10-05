@@ -52,6 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :samly, Samly.Provider,
   #base_url: "http://samly.howto:4003/sso",
   #entity_id: "urn:myhost-name:my-id",
+  #use_redirect_for_idp_req: false,
   #sign_requests: true,
   #sign_metadata: true,
   #signed_assertion_in_idp_resp: true,
