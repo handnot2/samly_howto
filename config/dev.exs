@@ -50,14 +50,78 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 config :samly, Samly.Provider,
-  #base_url: "http://samly.howto:4003/sso",
-  #entity_id: "urn:myhost-name:my-id",
-  #use_redirect_for_idp_req: false,
-  #sign_requests: true,
-  #sign_metadata: true,
-  #signed_assertion_in_idp_resp: true,
-  #signed_envelopes_in_idp_resp: true,
-  pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
-  certfile: "samly.crt",
-  keyfile:  "samly.pem",
-  idp_metadata_file: "idp_metadata.xml"
+  idp_id_from: :path_segment,
+  #idp_id_from: :subdomain,
+  service_providers: [
+    %{
+      id: "sp1",
+      entity_id: "urn:samly.howto:sp1",
+      certfile: "samly.crt",
+      keyfile: "samly.pem",
+      contact_name: "Samly Howto SP1 Admin",
+      contact_email: "sp1-admin@samly.howto",
+      org_name: "Samly Howto SP1",
+      org_displayname: "Samly Howto SP1 Displayname",
+      org_url: "http://samly.howto:4003"
+    },
+    %{
+      id: "sp2",
+      entity_id: "urn:idp2.samly.howto:sp2",
+      certfile: "samly.crt",
+      keyfile: "samly.pem",
+      #contact_name: "Samly Howto SP2 Admin",
+      #contact_email: "sp2-admin@samly.howto",
+      #org_name: "Samly Howto SP2",
+      #org_displayname: "Samly Howto SP2 Displayname",
+      #org_url: "http://idp2.samly.howto:4003"
+    },
+    %{
+      id: "sp3",
+      entity_id: "urn:idp3.samly.howto:sp3",
+      certfile: "samly.crt",
+      keyfile: "samly.pem",
+      #contact_name: "Samly Howto SP3 Admin",
+      #contact_email: "sp3-admin@samly.howto",
+      #org_name: "Samly Howto SP3",
+      #org_displayname: "Samly Howto SP3 Displayname",
+      #org_url: "http://idp3.samly.howto:4003"
+    }
+  ],
+  identity_providers: [
+    %{
+      id: "idp1",
+      sp_id: "sp1",
+      base_url: "http://samly.howto:4003/sso",
+      metadata_file: "idp_metadata.xml",
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
+      #use_redirect_for_req: false,
+      #sign_requests: true,
+      #sign_metadata: true,
+      #signed_assertion_in_resp: true,
+      #signed_envelopes_in_resp: true
+    },
+    %{
+      id: "idp2",
+      sp_id: "sp2",
+      base_url: "http://idp2.samly.howto:4003/sso",
+      metadata_file: "idp_metadata.xml",
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
+      #use_redirect_for_req: false,
+      #sign_requests: true,
+      #sign_metadata: true,
+      #signed_assertion_in_resp: true,
+      #signed_envelopes_in_resp: true
+    },
+    %{
+      id: "idp3",
+      sp_id: "sp3",
+      base_url: "http://idp3.samly.howto:4003/sso",
+      metadata_file: "idp_metadata.xml",
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
+      #use_redirect_for_req: false,
+      #sign_requests: true,
+      #sign_metadata: true,
+      #signed_assertion_in_resp: true,
+      #signed_envelopes_in_resp: true
+    }
+  ]

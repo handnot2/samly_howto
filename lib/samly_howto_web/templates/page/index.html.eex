@@ -7,27 +7,58 @@
       </a>
 
       <%= if @uid do %>
-        <p class="nav navbar-text">Signed in as <%= @uid %></p>
+        <p class="nav navbar-text"><kbd>Signed in as <%= @uid %></kbd></p>
       <% end %>
+
       <div class="nav navbar-nav navbar-right" style="padding: 0 15px;">
-        <a href="/sso/sp/metadata"
+        <!--
+        <a href="/sso/sp/metadata/idp1"
            class="btn btn-sm btn-default navbar-btn"
            role="button">
            SAML SP Metadata
-         </a>
+        </a>
+        -->
+
+        <!-- uncomment this section for: idp_id_from: :subdomain -->
+        <a href="<%= @metadata_uri %>"
+           class="btn btn-sm btn-default navbar-btn"
+           role="button">
+           SAML SP Metadata
+        </a>
+        <!-- -->
 
         <%= if @uid do %>
-          <a href="/sso/auth/signout?target_url=<%= @target_url %>"
+          <!--
+          <a href="/sso/auth/signout/idp1?target_url=<%= @target_url %>"
             class="btn btn-sm btn-primary navbar-btn"
             role="button">
             Sign out
           </a>
+          -->
+
+          <!-- uncomment this section for: idp_id_from: :subdomain -->
+          <a href="<%= @signout_uri %>?target_url=<%= @target_url %>"
+            class="btn btn-sm btn-primary navbar-btn"
+            role="button">
+            Sign out
+          </a>
+          <!-- -->
         <% else %>
-          <a href="/sso/auth/signin?target_url=<%= @target_url %>"
+          <!--
+          <a href="/sso/auth/signin/idp1?target_url=<%= @target_url %>"
              class="btn btn-sm btn-primary navbar-btn"
              role="button">
              Sign in
-           </a>
+          </a>
+          -->
+
+          <!-- uncomment this section for: idp_id_from: :subdomain -->
+          <a href="<%= @signin_uri %>?target_url=<%= @target_url %>"
+             class="btn btn-sm btn-primary navbar-btn"
+             role="button">
+             Sign in
+          </a>
+          <!-- -->
         <% end %>
       </div>
     </div>
@@ -37,7 +68,7 @@
     <div class="container-fluid">
       <table class="table table-striped">
         <thead>
-          <tr><th>Attributes from IdP Sent SAML Assertion</th></tr>
+          <tr><th>Attributes in IdP Sent SAML Assertion</th></tr>
           <tr><th>Attribute</th><th>Value</th></tr>
         </thead>
         <tbody>

@@ -8,10 +8,10 @@ defmodule SamlyHowtoWeb.Plugs.SamlyPipeline do
   def compute_attributes(conn, _opts) do
     assertion = conn.private[:samly_assertion]
 
-    first_name = Map.get(assertion.attributes, :first_name)
-    last_name  = Map.get(assertion.attributes, :last_name)
+    first_name = Map.get(assertion.attributes, "first_name")
+    last_name  = Map.get(assertion.attributes, "last_name")
 
-    computed = %{full_name: "#{first_name} #{last_name}"}
+    computed = %{"full_name" => "#{first_name} #{last_name}"}
 
     assertion = %Assertion{assertion | computed: computed}
 
