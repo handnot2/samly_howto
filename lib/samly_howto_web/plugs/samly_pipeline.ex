@@ -9,14 +9,15 @@ defmodule SamlyHowtoWeb.Plugs.SamlyPipeline do
     assertion = conn.private[:samly_assertion]
 
     first_name = Map.get(assertion.attributes, "first_name")
-    last_name  = Map.get(assertion.attributes, "last_name")
+    last_name = Map.get(assertion.attributes, "last_name")
 
     computed = %{"full_name" => "#{first_name} #{last_name}"}
 
     assertion = %Assertion{assertion | computed: computed}
 
     conn
-    |>  put_private(:samly_assertion, assertion)
+    |> put_private(:samly_assertion, assertion)
+
     # |>  send_resp(404, "attribute mapping failed")
     # |>  halt()
   end

@@ -12,7 +12,7 @@ defmodule SamlyHowto.Application do
       supervisor(SamlyHowtoWeb.Endpoint, []),
       # Start your own worker by calling: SamlyHowto.Worker.start_link(arg1, arg2, arg3)
       # worker(SamlyHowto.Worker, [arg1, arg2, arg3]),
-      worker(Samly.Provider, []),
+      worker(Samly.Provider, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

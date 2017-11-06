@@ -12,8 +12,14 @@ config :samly_howto, SamlyHowtoWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]
+  watchers: [
+    node: [
+      "node_modules/brunch/bin/brunch",
+      "watch",
+      "--stdin",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
 
 # ## SSL Support
 #
@@ -49,9 +55,12 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
+# #### Identity Provider ID choices
+#
+# IdP ID from `:path_segment` is used OOTB.
+# Set this to `:subdomain` when sub-domain in the hostname is to be treated as IdP ID.
 config :samly, Samly.Provider,
   idp_id_from: :path_segment,
-  #idp_id_from: :subdomain,
   service_providers: [
     %{
       id: "sp1",
@@ -68,23 +77,23 @@ config :samly, Samly.Provider,
       id: "sp2",
       entity_id: "urn:idp2.samly.howto:sp2",
       certfile: "samly.crt",
-      keyfile: "samly.pem",
-      #contact_name: "Samly Howto SP2 Admin",
-      #contact_email: "sp2-admin@samly.howto",
-      #org_name: "Samly Howto SP2",
-      #org_displayname: "Samly Howto SP2 Displayname",
-      #org_url: "http://idp2.samly.howto:4003"
+      keyfile: "samly.pem"
+      # contact_name: "Samly Howto SP2 Admin",
+      # contact_email: "sp2-admin@samly.howto",
+      # org_name: "Samly Howto SP2",
+      # org_displayname: "Samly Howto SP2 Displayname",
+      # org_url: "http://idp2.samly.howto:4003"
     },
     %{
       id: "sp3",
       entity_id: "urn:idp3.samly.howto:sp3",
       certfile: "samly.crt",
-      keyfile: "samly.pem",
-      #contact_name: "Samly Howto SP3 Admin",
-      #contact_email: "sp3-admin@samly.howto",
-      #org_name: "Samly Howto SP3",
-      #org_displayname: "Samly Howto SP3 Displayname",
-      #org_url: "http://idp3.samly.howto:4003"
+      keyfile: "samly.pem"
+      # contact_name: "Samly Howto SP3 Admin",
+      # contact_email: "sp3-admin@samly.howto",
+      # org_name: "Samly Howto SP3",
+      # org_displayname: "Samly Howto SP3 Displayname",
+      # org_url: "http://idp3.samly.howto:4003"
     }
   ],
   identity_providers: [
@@ -93,35 +102,35 @@ config :samly, Samly.Provider,
       sp_id: "sp1",
       base_url: "http://samly.howto:4003/sso",
       metadata_file: "idp_metadata.xml",
-      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
-      #use_redirect_for_req: false,
-      #sign_requests: true,
-      #sign_metadata: true,
-      #signed_assertion_in_resp: true,
-      #signed_envelopes_in_resp: true
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline
+      # use_redirect_for_req: false,
+      # sign_requests: true,
+      # sign_metadata: true,
+      # signed_assertion_in_resp: true,
+      # signed_envelopes_in_resp: true
     },
     %{
       id: "idp2",
       sp_id: "sp2",
       base_url: "http://idp2.samly.howto:4003/sso",
       metadata_file: "idp_metadata.xml",
-      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
-      #use_redirect_for_req: false,
-      #sign_requests: true,
-      #sign_metadata: true,
-      #signed_assertion_in_resp: true,
-      #signed_envelopes_in_resp: true
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline
+      # use_redirect_for_req: false,
+      # sign_requests: true,
+      # sign_metadata: true,
+      # signed_assertion_in_resp: true,
+      # signed_envelopes_in_resp: true
     },
     %{
       id: "idp3",
       sp_id: "sp3",
       base_url: "http://idp3.samly.howto:4003/sso",
       metadata_file: "idp_metadata.xml",
-      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
-      #use_redirect_for_req: false,
-      #sign_requests: true,
-      #sign_metadata: true,
-      #signed_assertion_in_resp: true,
-      #signed_envelopes_in_resp: true
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline
+      # use_redirect_for_req: false,
+      # sign_requests: true,
+      # sign_metadata: true,
+      # signed_assertion_in_resp: true,
+      # signed_envelopes_in_resp: true
     }
   ]
