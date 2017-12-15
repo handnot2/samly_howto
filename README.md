@@ -28,17 +28,23 @@ The changes required are confined to the `config/dev.exs` file.
 git clone https://github.com/handnot2/samly_howto
 cd samly_howto
 ./gencert.sh
-cd assets && npm install && cd ..
 mix deps.get
 mix compile
+cd assets && npm install && cd ..
 ```
 
-> Before you can run this application, you need to setup an IdP. Checkout the
-> instructions in the [Samly Documentation](https://hexdocs.pm/samly)
-
-Make sure that the Docker compose based SimpleSAMLphp IdP is setup. Follow
-the instructions there to establish mutual trust between the SimpleSAMLphp
-IdP and this application.
+> Before you can run this application, you need to have a working
+> SAML Identity Provider setup. Checkout the instructions in
+> 
+> [Samly Documentation](https://hexdocs.pm/samly)
+>
+> for configuration related information. The following blog post
+> will be very useful as well (based on Shibboleth SAML IdP):
+>
+> [SAML Authentication for Phoenix](https://handnot2.github.io/blog/auth/saml-auth-for-phoenix)
+>
+> If you want to use `SimpleSAMLphp`, checkout:
+> [`samly_simplesaml`](https://github.com/handnot2/samly_simplesaml).
 
 Start this application by running
 
@@ -47,4 +53,4 @@ Start this application by running
 ```
 
 This application can now be accessed from the browser by visiting the
-URL: `http://samly.howto:4003`.
+URL: `https://samly.howto:4443`.

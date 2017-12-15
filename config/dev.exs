@@ -7,7 +7,13 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :samly_howto, SamlyHowtoWeb.Endpoint,
-  http: [port: {:system, "PORT"}],
+  #http: [port: {:system, "PORT"}],
+  https: [
+    port: 4443,
+    otp_app: :samly_howto,
+    keyfile: "priv/keys/samly.pem",
+    certfile: "priv/keys/samly.crt"
+  ],
   url: [host: {:system, "HOST"}],
   debug_errors: true,
   code_reloader: true,
@@ -64,46 +70,46 @@ config :samly, Samly.Provider,
   service_providers: [
     %{
       id: "sp1",
-      entity_id: "urn:samly.howto:sp1",
-      certfile: "samly.crt",
-      keyfile: "samly.pem",
+      #entity_id: "urn:samly.howto:sp1",
+      certfile: "priv/keys/samly.crt",
+      keyfile: "priv/keys/samly.pem",
       contact_name: "Samly Howto SP1 Admin",
       contact_email: "sp1-admin@samly.howto",
       org_name: "Samly Howto SP1",
       org_displayname: "Samly Howto SP1 Displayname",
-      org_url: "http://samly.howto:4003"
+      org_url: "https://samly.howto:4443"
     },
     %{
       id: "sp2",
-      entity_id: "urn:idp2.samly.howto:sp2",
-      certfile: "samly.crt",
-      keyfile: "samly.pem"
+      #entity_id: "urn:idp2.samly.howto:sp2",
+      certfile: "priv/keys/samly.crt",
+      keyfile: "priv/keys/samly.pem",
       # contact_name: "Samly Howto SP2 Admin",
       # contact_email: "sp2-admin@samly.howto",
       # org_name: "Samly Howto SP2",
       # org_displayname: "Samly Howto SP2 Displayname",
-      # org_url: "http://idp2.samly.howto:4003"
+      # org_url: "https://idp2.samly.howto:4443"
     },
     %{
       id: "sp3",
-      entity_id: "urn:idp3.samly.howto:sp3",
-      certfile: "samly.crt",
-      keyfile: "samly.pem"
+      #entity_id: "urn:idp3.samly.howto:sp3",
+      certfile: "priv/keys/samly.crt",
+      keyfile: "priv/keys/samly.pem",
       # contact_name: "Samly Howto SP3 Admin",
       # contact_email: "sp3-admin@samly.howto",
       # org_name: "Samly Howto SP3",
       # org_displayname: "Samly Howto SP3 Displayname",
-      # org_url: "http://idp3.samly.howto:4003"
+      # org_url: "https://idp3.samly.howto:4443"
     }
   ],
   identity_providers: [
     %{
       id: "idp1",
       sp_id: "sp1",
-      base_url: "http://samly.howto:4003/sso",
+      base_url: "https://samly.howto:4443/sso",
       metadata_file: "idp_metadata.xml",
-      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline
-      # use_redirect_for_req: false,
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
+      use_redirect_for_req: true,
       # sign_requests: true,
       # sign_metadata: true,
       # signed_assertion_in_resp: true,
@@ -112,10 +118,10 @@ config :samly, Samly.Provider,
     %{
       id: "idp2",
       sp_id: "sp2",
-      base_url: "http://idp2.samly.howto:4003/sso",
+      base_url: "https://idp2.samly.howto:4443/sso",
       metadata_file: "idp_metadata.xml",
-      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline
-      # use_redirect_for_req: false,
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
+      use_redirect_for_req: true,
       # sign_requests: true,
       # sign_metadata: true,
       # signed_assertion_in_resp: true,
@@ -124,10 +130,10 @@ config :samly, Samly.Provider,
     %{
       id: "idp3",
       sp_id: "sp3",
-      base_url: "http://idp3.samly.howto:4003/sso",
+      base_url: "https://idp3.samly.howto:4443/sso",
       metadata_file: "idp_metadata.xml",
-      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline
-      # use_redirect_for_req: false,
+      pre_session_create_pipeline: SamlyHowtoWeb.Plugs.SamlyPipeline,
+      use_redirect_for_req: true,
       # sign_requests: true,
       # sign_metadata: true,
       # signed_assertion_in_resp: true,
