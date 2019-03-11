@@ -1,98 +1,64 @@
-<div class="container-fluid">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <a  href="https://github.com/handnot2"
-          class="nav navbar-brand">
-        Samly Howto
-      </a>
-
+<section class="row">
+  <div class="column">
+    <%= if @uid do %>
+      <a class="button" style="width: 100%;"
+        href="<%= URI.encode(@signout_uri) %>">Sign out</a>
+    <% else %>
+      <a class="button" style="width: 100%;"
+        href="<%= URI.encode(@signin_uri) %>">Sign in</a>
+    <% end %>
+  </div>
+  <div class="column">
+    <a class="button button-outline" style="width: 100%;"
+      href="<%= URI.encode(@metadata_uri) %>">SP Metadata</a>
+  </div>
+</section>
+<section class="row">
+  <div class="column">
+    <div class="signin-status">
       <%= if @uid do %>
-        <p class="nav navbar-text"><kbd>Signed in as <%= @uid %></kbd></p>
+        <strong>Signed in as <%= Plug.HTML.html_escape(@uid) %></strong>
+      <% else %>
+        Not signed in
       <% end %>
-
-      <div class="nav navbar-nav navbar-right" style="padding: 0 15px;">
-        <!--
-        <a href="/sso/sp/metadata/idp1"
-           class="btn btn-sm btn-default navbar-btn"
-           role="button">
-           SAML SP Metadata
-        </a>
-        -->
-
-        <!-- uncomment this section for: idp_id_from: :subdomain -->
-        <a href="<%= @metadata_uri %>"
-           class="btn btn-sm btn-default navbar-btn"
-           role="button">
-           SAML SP Metadata
-        </a>
-        <!-- -->
-
-        <%= if @uid do %>
-          <!--
-          <a href="/sso/auth/signout/idp1?target_url=<%= @target_url %>"
-            class="btn btn-sm btn-primary navbar-btn"
-            role="button">
-            Sign out
-          </a>
-          -->
-
-          <!-- uncomment this section for: idp_id_from: :subdomain -->
-          <a href="<%= @signout_uri %>?target_url=<%= @target_url %>"
-            class="btn btn-sm btn-primary navbar-btn"
-            role="button">
-            Sign out
-          </a>
-          <!-- -->
-        <% else %>
-          <!--
-          <a href="/sso/auth/signin/idp1?target_url=<%= @target_url %>"
-             class="btn btn-sm btn-primary navbar-btn"
-             role="button">
-             Sign in
-          </a>
-          -->
-
-          <!-- uncomment this section for: idp_id_from: :subdomain -->
-          <a href="<%= @signin_uri %>?target_url=<%= @target_url %>"
-             class="btn btn-sm btn-primary navbar-btn"
-             role="button">
-             Sign in
-          </a>
-          <!-- -->
-        <% end %>
-      </div>
+      <%= if @idp_id do %>
+        <small>(IdP: <%= Plug.HTML.html_escape(@idp_id) %>)</small>
+      <% end %>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <%= if @attributes do %>
-    <div class="container-fluid">
-      <table class="table table-striped">
-        <thead>
-          <tr><th>Attributes in IdP Sent SAML Assertion</th></tr>
-          <tr><th>Attribute</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-          <%= for {k, v} <- @attributes do %>
-            <tr><td><%= k %></td><td><%= v %></td></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
 
-  <%= if @computed do %>
-    <div class="container-fluid">
-      <table class="table table-striped">
-        <thead>
-          <tr><th>Computed Attributes</th></tr>
-          <tr><th>Attribute</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-          <%= for {k, v} <- @computed do %>
-            <tr><td><%= k %></td><td><%= v %></td></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-</div>
+<%= if @attributes do %>
+  <strong>Assertions in SAML Response</strong>
+  <table class="table attribute-table">
+    <thead>
+      <tr><th>Attribute</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <%= for {k, v} <- @attributes do %>
+        <tr>
+          <td><%= Plug.HTML.html_escape(k) %></td>
+          <td><%= Plug.HTML.html_escape([v] |> List.flatten() |> Enum.join(", ")) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= if @computed do %>
+  <strong>Computed Attributes</strong>
+  <table class="table attribute-table">
+    <thead>
+      <tr><th>Attribute</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <%= for {k, v} <- @computed do %>
+        <tr>
+          <td><%= Plug.HTML.html_escape(k) %></td>
+          <td><%= Plug.HTML.html_escape([v] |> List.flatten() |> Enum.join(", ")) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

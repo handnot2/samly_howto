@@ -3,12 +3,14 @@
 #
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
+
+# General application configuration
 use Mix.Config
 
 # Configures the endpoint
 config :samly_howto, SamlyHowtoWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "xyC3UIJzAYfuGyQXTYCHeWiD90ziZBPuk07QQFWURvXTRDSFaurxcjcxFPwj1h2Z",
+  secret_key_base: "h8xmYvcnEvTs3RY3PBe8Q/5qfzFb9OStotvAiH/9Gi57N3XQAwKae0YsDy7u9QVx",
   render_errors: [view: SamlyHowtoWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: SamlyHowto.PubSub, adapter: Phoenix.PubSub.PG2]
 
@@ -16,6 +18,9 @@ config :samly_howto, SamlyHowtoWeb.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

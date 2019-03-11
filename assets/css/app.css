@@ -1,1 +1,18 @@
 /* This file is for your main application css. */
+
+@import "./phoenix.css";
+
+.attribute-table {
+  background: rgb(251, 251, 251);
+  padding: 0 1.5rem;
+}
+
+.signin-status {
+  color: sienna;
+  background-color: transparent;
+  width: 100%;
+  padding: .5rem 0 2rem 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.5rem;
+}

@@ -4,8 +4,8 @@ defmodule SamlyHowto.Mixfile do
   def project do
     [
       app: :samly_howto,
-      version: "0.7.0",
-      elixir: "~> 1.4",
+      version: "0.8.0",
+      elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -30,15 +30,28 @@ defmodule SamlyHowto.Mixfile do
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
+  #
+  # Phoenix 1.4 dependencies:
+  #
+  # {:phoenix, "~> 1.4"},
+  # {:plug_cowboy, "~> 2.0"},
+  #
+  # Phoenix 1.3 dependencies:
+  #
+  # {:phoenix, "~> 1.3"},
+  # {:plug_cowboy, "~> 1.0"},
+  # {:esaml, "~> 3.7", override: true},
+  #
   defp deps do
     [
-      {:phoenix, "~> 1.3.0"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, "~> 1.4"},
+      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:jason, "~> 1.1"},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
-      {:samly, "~> 0.8"}
+      {:samly, "~> 1.0.0-rc.1"}
     ]
   end
 end
