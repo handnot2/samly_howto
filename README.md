@@ -71,6 +71,13 @@ Make your Identity Provider's Metadata available to your Phoenix SAML
 Service Provider application in XML form. How you get this metadata
 XML is specific to your IdP.
 
+```
+wget --no-check-certificate -O idp1_metadata.xml https://idp1.samly:9091/simplesaml/saml2/idp/metadata.php
+```
+
+Check your IdP for instructions on how to fetch or export the IdP metadata into an XML file and make that
+file available to `Samly`.
+
 ### Configure Samly
 
 Checkout instructions in the [Samly Documentation](https://hexdocs.pm/samly)
