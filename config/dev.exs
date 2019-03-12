@@ -72,5 +72,5 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 # Uncomment either "path_segment" or "subdomain" config
-#import_config "path_segment_ssp_samly_config.exs"
-import_config "subdomain_ssp_samly_config.exs"
+import_config "path_segment_ssp_samly_config.exs"
+#import_config "subdomain_ssp_samly_config.exs"
