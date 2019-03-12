@@ -4,7 +4,7 @@ defmodule SamlyHowto.Mixfile do
   def project do
     [
       app: :samly_howto,
-      version: "0.8.0",
+      version: "1.0.0",
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -51,7 +51,7 @@ defmodule SamlyHowto.Mixfile do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:jason, "~> 1.1"},
       {:gettext, "~> 0.11"},
-      {:samly, "~> 1.0.0-rc.1"}
+      {:samly, "~> 1.0.0"}
     ]
   end
 end

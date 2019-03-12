@@ -14,6 +14,6 @@
   "plug_cowboy": {:hex, :plug_cowboy, "2.0.1", "d798f8ee5acc86b7d42dbe4450b8b0dadf665ce588236eb0a751a132417a980e", [:mix], [{:cowboy, "~> 2.5", [hex: :cowboy, repo: "hexpm", optional: false]}, {:plug, "~> 1.7", [hex: :plug, repo: "hexpm", optional: false]}], "hexpm"},
   "plug_crypto": {:hex, :plug_crypto, "1.0.0", "18e49317d3fa343f24620ed22795ec29d4a5e602d52d1513ccea0b07d8ea7d4d", [:mix], [], "hexpm"},
   "ranch": {:hex, :ranch, "1.7.1", "6b1fab51b49196860b733a49c07604465a47bdb78aa10c1c16a3d199f7f8c881", [:rebar3], [], "hexpm"},
-  "samly": {:hex, :samly, "1.0.0-rc.1", "61dfd0127ceb0cae056f9f65f6f755ade0d2f65df95f6e0f61d3f755f7824c38", [:mix], [{:esaml, "~> 4.2", [hex: :esaml, repo: "hexpm", optional: false]}, {:plug, "~> 1.6", [hex: :plug, repo: "hexpm", optional: false]}, {:sweet_xml, "~> 0.6.6", [hex: :sweet_xml, repo: "hexpm", optional: false]}], "hexpm"},
+  "samly": {:hex, :samly, "1.0.0", "e4843487c62a4456780bb98ca1bc7a854ff71a447a8c8ee4d231781181e8f1b3", [:mix], [{:esaml, "~> 4.2", [hex: :esaml, repo: "hexpm", optional: false]}, {:plug, "~> 1.6", [hex: :plug, repo: "hexpm", optional: false]}, {:sweet_xml, "~> 0.6.6", [hex: :sweet_xml, repo: "hexpm", optional: false]}], "hexpm"},
   "sweet_xml": {:hex, :sweet_xml, "0.6.6", "fc3e91ec5dd7c787b6195757fbcf0abc670cee1e4172687b45183032221b66b8", [:mix], [], "hexpm"},
 }
